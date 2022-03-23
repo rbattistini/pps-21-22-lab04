@@ -4,6 +4,8 @@ import scala.annotation.tailrec
 import u04lab.code.Option.*
 import u04lab.code.Option
 
+//course.foreach(e => c = append(Cons(e, Nil()), c))
+
 enum List[E]:
   case Cons(head: E, tail: List[E])
   case Nil()
@@ -11,7 +13,7 @@ enum List[E]:
 object List:
   def apply[E](e: E*): List[E] =
     var l: List[E] = Nil()
-    for elem <- e do l = append(l, Cons(elem, Nil()))
+    e.foreach(e=> l = append(l, Cons(e, Nil())))
     l
 
   def sum(l: List[Int]): Int = l match
