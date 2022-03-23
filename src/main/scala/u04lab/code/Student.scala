@@ -8,7 +8,7 @@ trait Student:
   def name: String
   def year: Int
   def enrolling(course: Course): Unit
-  def enrolling2(course: Course*): Unit
+  def enrolling(course: Course*): Unit
   def courses: List[String]
   def hasTeacher(teacher: String): Boolean
 
@@ -26,7 +26,7 @@ object Student:
     override def enrolling(course: Course): Unit =
       coursesList = append(Cons(course, Nil()), coursesList)
 
-    override def enrolling2(course: Course*): Unit =
+    override def enrolling(course: Course*): Unit =
       for c <- course do coursesList = append(Cons(c, Nil()), coursesList)
 
     override def courses: List[String] = map(coursesList)((c: Course) => c.name)

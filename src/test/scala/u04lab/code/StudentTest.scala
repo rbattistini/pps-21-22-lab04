@@ -23,7 +23,7 @@ class StudentTest:
     assertEquals(s1.courses, Cons("PCD",Cons("PPS",Nil())))
 
   @Test def testEnrollingWithMultipleCourses(): Unit =
-    s2.enrolling2(cPPS, cPCD, cSDR)
+    s2.enrolling(cPPS, cPCD, cSDR)
     assertEquals(s2.courses, Cons("SDR", Cons("PCD", Cons("PPS", Nil()))))
 
   @Test def testHasTeacher(): Unit =
