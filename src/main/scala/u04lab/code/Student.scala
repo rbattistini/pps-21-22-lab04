@@ -7,7 +7,6 @@ import Option.isEmpty
 trait Student:
   def name: String
   def year: Int
-  def enrolling(course: Course): Unit
   def enrolling(course: Course*): Unit
   def courses: List[String]
   def hasTeacher(teacher: String): Boolean
@@ -22,9 +21,6 @@ object Student:
   private case class StudentImpl(override val name: String,
                                  override val year: Int) extends Student:
     private var coursesList: List[Course] = Nil()
-
-    override def enrolling(course: Course): Unit =
-      coursesList = append(Cons(course, Nil()), coursesList)
 
     override def enrolling(course: Course*): Unit =
       for c <- course do coursesList = append(Cons(c, Nil()), coursesList)
