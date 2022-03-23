@@ -17,12 +17,7 @@ class StudentTest:
     case SameTeacher(s) => true
     case _ => false
 
-  @Test def testEnrollingWithSingleCourse(): Unit =
-    s1.enrolling(cPPS)
-    s1.enrolling(cPCD)
-    assertEquals(s1.courses, Cons("PCD",Cons("PPS",Nil())))
-
-  @Test def testEnrollingWithMultipleCourses(): Unit =
+  @Test def testEnrolling(): Unit =
     s2.enrolling(cPPS, cPCD, cSDR)
     assertEquals(s2.courses, Cons("SDR", Cons("PCD", Cons("PPS", Nil()))))
 
