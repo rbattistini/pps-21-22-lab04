@@ -5,10 +5,10 @@ import org.junit.Assert.*
 import u04lab.polyglot.Tup2
 
 class LogicsImplTest:
-  val t1: Tup2[Int, Int] = Tup2(2, 2)
-  val t2: Tup2[Int, Int] = Tup2(4, 2)
-  val gridSize = 4
-  val logicsImpl: LogicsImpl = LogicsImpl(gridSize)
+  private val t1 = Tup2(2, 2)
+  private val t2 = Tup2(4, 2)
+  private val gridSize = 4
+  private val logicsImpl = LogicsImpl(gridSize)
 
   @Test def testExitConditionTrue(): Unit =
     val tickCount = 2
