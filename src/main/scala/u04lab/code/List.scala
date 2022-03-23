@@ -4,8 +4,6 @@ import scala.annotation.tailrec
 import u04lab.code.Option.*
 import u04lab.code.Option
 
-//course.foreach(e => c = append(Cons(e, Nil()), c))
-
 enum List[E]:
   case Cons(head: E, tail: List[E])
   case Nil()
