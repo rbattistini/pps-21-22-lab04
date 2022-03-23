@@ -3,13 +3,17 @@ package u04lab.code
 import scala.annotation.tailrec
 import u04lab.code.Option.*
 import u04lab.code.Option
-// A generic linkedlist
+
 enum List[E]:
   case Cons(head: E, tail: List[E])
   case Nil()
 
-// a companion object (i.e., module) for List
 object List:
+  def apply[E](e: E*): List[E] =
+    var l: List[E] = Nil()
+    for elem <- e do l = append(l, Cons(elem, Nil()))
+    l
+
   def sum(l: List[Int]): Int = l match
     case Cons(h, t) => h + sum(t)
     case _ => 0
@@ -63,4 +67,6 @@ object List:
     case _ => Nil()
 
   def take[A](list: List[A], n: Int): List[A] = reverse(drop(reverse(list), length(list) - n))
+  
+  
 end List

@@ -2,14 +2,15 @@ package u04lab.code
 
 import List.*
 import List.{append, contains}
+import Option.isEmpty
 
 trait Student:
   def name: String
   def year: Int
-  def enrolling(course: Course): Unit // the student participates to a Course
-  def enrolling2(course: Course*): Unit // the student participates to a Course
-  def courses: List[String] // names of course the student participates to
-  def hasTeacher(teacher: String): Boolean // is the student participating to a course of this teacher?
+  def enrolling(course: Course): Unit
+  def enrolling2(course: Course*): Unit
+  def courses: List[String]
+  def hasTeacher(teacher: String): Boolean
 
 trait Course:
   def name: String
@@ -39,27 +40,9 @@ object Course:
   private case class CourseImpl(override val name: String,
                                 override val teacher: String) extends Course
 
-@main def checkStudents(): Unit =
-  val cPPS = Course("PPS", "Viroli")
-  val cPCD = Course("PCD", "Ricci")
-  val cSDR = Course("SDR", "D'Angelo")
-  val s1 = Student("mario", 2015)
-  val s2 = Student("gino", 2016)
-  val s3 = Student("rino") // defaults to 2017
-  s1.enrolling(cPPS)
-  s1.enrolling(cPCD)
-  s2.enrolling(cPPS)
-  s3.enrolling2(cPPS, cPCD, cSDR)
-  println(
-    (s1.courses, s2.courses, s3.courses)
-  ) // (Cons(PCD,Cons(PPS,Nil())),Cons(PPS,Nil()),Cons(SDR,Cons(PCD,Cons(PPS,Nil()))))
-  println(s1.hasTeacher("Ricci")) // true
-
-/** Hints:
-  *   - simply implement Course, e.g. with a case class
-  *   - implement Student with a StudentImpl keeping a private Set of courses
-  *   - try to implement in StudentImpl method courses with map
-  *   - try to implement in StudentImpl method hasTeacher with map and find
-  *   - check that the two println above work correctly
-  *   - refactor the code so that method enrolling accepts a variable argument Course*
-  */
+object SameTeacher:
+  def unapply(courses: List[Course]): scala.Option[String] =
+    val teachers = map(courses)(_.teacher)
+    teachers match
+      case Cons(h, t) if isEmpty(find(teachers)((s: String) => s != h)) => scala.Option(h)
+      case _ => scala.Option.empty
