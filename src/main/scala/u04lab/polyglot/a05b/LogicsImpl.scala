@@ -23,7 +23,7 @@ class LogicsImpl(private val gridSize: Int) extends Logics:
     t1.x + t1.y == t2.x + t2.y && isInRange(t1.x, t2.x, offset)
 
   def isTupleAnElement(t1: Tup2[Int, Int], t2: Tup2[Int, Int], offset: Int): Boolean = (t1, t2) match
-    case (t1, t2) if  onXAxis(t1, t2, offset) || onYAxis(t1, t2, offset) || onDiagonal(t1, t2, offset) => true
+    case (t1, t2) if onXAxis(t1, t2, offset) || onYAxis(t1, t2, offset) || onDiagonal(t1, t2, offset) => true
     case _ => false
 
   def isTupleOutsideGrid(t: Tup2[Int, Int], offset: Int, gridSize: Int): Boolean = t match
