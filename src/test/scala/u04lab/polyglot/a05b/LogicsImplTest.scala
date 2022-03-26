@@ -2,7 +2,7 @@ package u04lab.polyglot.a05b
 
 import org.junit.*
 import org.junit.Assert.*
-import u04lab.polyglot.Tup2
+import u04lab.polyglot.a05b.Tup2
 
 class LogicsImplTest:
   private val t1 = Tup2(2, 2)
