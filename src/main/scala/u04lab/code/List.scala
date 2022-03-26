@@ -61,6 +61,8 @@ object List:
 
   def contains[A](list: List[A], elem: A): Boolean = !Option.isEmpty(find(list)(_ == elem))
 
+  def anyMatch[A](l: List[A])(pred: A => Boolean): Boolean = !Option.isEmpty(find(l)(pred))
+
   def remove[A](list: List[A])(f: A => Boolean): List[A] = list match
     case Cons(elem, rest) if f(elem) => rest
     case Cons(elem, rest) => Cons(elem, remove(rest)(f))

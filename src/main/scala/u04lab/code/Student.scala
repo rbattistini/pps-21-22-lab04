@@ -1,7 +1,7 @@
 package u04lab.code
 
 import List.*
-import List.{append, contains}
+import List.{append, contains, anyMatch}
 import Option.isEmpty
 
 trait Student:
@@ -40,5 +40,5 @@ object SameTeacher:
   def unapply(courses: List[Course]): scala.Option[String] =
     val teachers = map(courses)(_.teacher)
     teachers match
-      case Cons(h, t) if isEmpty(find(teachers)(_ != h)) => scala.Option(h)
+      case Cons(h, t) if !anyMatch(teachers)(_ != h) => scala.Option(h)
       case _ => scala.Option.empty
