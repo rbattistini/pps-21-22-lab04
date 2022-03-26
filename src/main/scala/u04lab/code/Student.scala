@@ -25,10 +25,10 @@ object Student:
     override def enrolling(course: Course*): Unit =
       for c <- course do coursesList = append(Cons(c, Nil()), coursesList)
 
-    override def courses: List[String] = map(coursesList)((c: Course) => c.name)
+    override def courses: List[String] = map(coursesList)(_.name)
 
     override def hasTeacher(teacher: String): Boolean =
-      contains(map(coursesList)((c: Course) => c.teacher), teacher)
+      contains(map(coursesList)(_.teacher), teacher)
 
 object Course:
   def apply(name: String, teacher: String): Course =
@@ -40,5 +40,5 @@ object SameTeacher:
   def unapply(courses: List[Course]): scala.Option[String] =
     val teachers = map(courses)(_.teacher)
     teachers match
-      case Cons(h, t) if isEmpty(find(teachers)((s: String) => s != h)) => scala.Option(h)
+      case Cons(h, t) if isEmpty(find(teachers)(_ != h)) => scala.Option(h)
       case _ => scala.Option.empty
