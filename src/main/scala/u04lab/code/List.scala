@@ -11,7 +11,7 @@ enum List[E]:
 object List:
   def apply[E](e: E*): List[E] =
     var l: List[E] = Nil()
-    e.foreach(e=> l = append(l, Cons(e, Nil())))
+    e.foreach(e => l = Cons(e, l))
     l
 
   def sum(l: List[Int]): Int = l match
@@ -67,6 +67,5 @@ object List:
     case _ => Nil()
 
   def take[A](list: List[A], n: Int): List[A] = reverse(drop(reverse(list), length(list) - n))
-  
-  
+
 end List
