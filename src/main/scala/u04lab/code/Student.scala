@@ -22,8 +22,8 @@ object Student:
                                  override val year: Int) extends Student:
     private var coursesList: List[Course] = Nil()
 
-    override def enrolling(course: Course*): Unit =
-      for c <- course do coursesList = append(Cons(c, Nil()), coursesList)
+    override def enrolling(coursse: Course*): Unit =
+      courses foreach (course => coursesList = Cons(course, coursesList))
 
     override def courses: List[String] = map(coursesList)(_.name)
 
